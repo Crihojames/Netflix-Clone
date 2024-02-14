@@ -4,7 +4,7 @@ const BackgroundImage = () => {
   return (
     <BackgroundContainer>
       <img
-        src="https://res.cloudinary.com/ehizeex-shop/image/upload/v1668265236/NetflixApp/netflix-reuse-official_ntcjl2_wtrhhh.jpg"
+        src="public\images\netflixBackground.jpg"
         alt="non internet connection"
       />
     </BackgroundContainer>
