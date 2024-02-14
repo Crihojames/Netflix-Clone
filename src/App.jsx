@@ -21,7 +21,7 @@ function App() {
         <Route exact path='/movie' element={<MoviePage/>}/>
       </Routes>
       {/* <BackgroundImage/> */}
-      <Header/>
+      {/* <Header/> */}
     </BrowserRouter>
   )
 }
