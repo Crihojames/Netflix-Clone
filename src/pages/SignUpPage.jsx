@@ -1,4 +1,3 @@
-// import {useState} from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
@@ -6,12 +5,15 @@ import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/aut
 import { firebaseAuth } from "../utils/firebase-config";
 import Header from "../components/Header";
 import BackgroundImage from "../components/BackgroundImage";
+import { useNavigate } from "react-router-dom";
 
 
 const SignUpPage = () => {
 
     const [showPassword, setShowPassword ] = useState(false);
     const [ formValues, setFormValues ] = useState({email: "", password: ""})
+
+    const navigate = useNavigate()
 
     const handleSignIn = async()=>{
         try{
@@ -21,6 +23,10 @@ const SignUpPage = () => {
             console.log(error);
         }
     }
+
+    onAuthStateChanged(firebaseAuth, (currentUser)=>{
+        if(currentUser)navigate('/')
+    })
 
     return (
         <Container>
@@ -49,7 +55,7 @@ const SignUpPage = () => {
                         onChange={(e)=>setFormValues({
                             ...formValues,[e.target.name]: e.target.value
                         })}
-                     />
+                    />
                 )}
 
                 {

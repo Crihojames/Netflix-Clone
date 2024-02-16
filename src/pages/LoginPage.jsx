@@ -1,9 +1,31 @@
-import styled from "styled-components";
+import { useState } from "react";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
 import Header from "../components/Header";
 import BackgroundImage from "../components/BackgroundImage";
-import { useState } from "react";
+import styled from "styled-components";
+import { firebaseAuth } from "../utils/firebase-config";
 
 const LoginPage = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const navigate = useNavigate()
+
+    const handleLogin = async () =>{
+        try {
+            await signInWithEmailAndPassword(firebaseAuth, email, password);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    onAuthStateChanged(firebaseAuth, (currentUser)=>{
+    if(currentUser)navigate('/')
+    })
+
     return (
         <Wrapper>
             <BackgroundImage/>
@@ -15,13 +37,15 @@ const LoginPage = () => {
                             <h1>login</h1>
                         </div>
                         <div className="container">
-                        <input type="text" 
-                        placeholder="email"
+                        <input type="text" placeholder="Email"
+                        onChange={(e)=>setEmail(e.target.value)}
+                        value={email}
                         />
-                        <input type="password"
-                        placeholder="password"
+                        <input type="password" placeholder="password"
+                        onChange={(e)=>setPassword(e.target.value)}
+                        value={password}
                         />
-                        <button>Login</button>
+                        <button onClick={ handleLogin}>Login</button>
                         </div>
                     </div>
                 </div>
@@ -36,7 +60,7 @@ position: relative;
     position: absolute;
         top: 0;
         left: 0;
-        background-color: rgba(0,0,0,0.6);
+        background-color: rgba(0,0,0,0.79);
         height: 100vh;
         width: 100vw;
         grid-template-columns: 15vh 85vh;
@@ -54,7 +78,7 @@ position: relative;
             align-items: center;
             justify-content: center;
             gap: 2rem;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0,0,0,0.8);
             height: 70vh;
             padding: 2rem;
             color: white;
