@@ -1,13 +1,27 @@
 // import {useState} from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+
+import { firebaseAuth } from "../utils/firebase-config";
 import Header from "../components/Header";
 import BackgroundImage from "../components/BackgroundImage";
-import { useState } from "react";
 
 
 const SignUpPage = () => {
 
-    const [showPassword, setShowPassword ] = useState(false)
+    const [showPassword, setShowPassword ] = useState(false);
+    const [ formValues, setFormValues ] = useState({email: "", password: ""})
+
+    const handleSignIn = async()=>{
+        try{
+            const{ email, password} = formValues;
+            await createUserWithEmailAndPassword(firebaseAuth, email, password)
+        } catch (error){
+            console.log(error);
+        }
+    }
+
     return (
         <Container>
             <BackgroundImage/>
@@ -22,14 +36,26 @@ const SignUpPage = () => {
                 <div className="form">
                 {
                     showPassword ? (
-                    <input type="Password" placeholder="password" name="Password" />
-                    ): (<input type="email" placeholder="email address" name="email" />
+                    <input type="Password" placeholder="password" name="password"
+
+                        value={formValues.password}
+                        onChange={(e)=>setFormValues({
+                            ...formValues,[e.target.name]: e.target.value 
+                        })}
+                    />
+                    ): (<input type="email" placeholder="email address" name="email"
+
+                        value={formValues.email}
+                        onChange={(e)=>setFormValues({
+                            ...formValues,[e.target.name]: e.target.value
+                        })}
+                     />
                 )}
 
                 {
                     !showPassword ? (
                     <button onClick={()=>setShowPassword(true)}>Get Started</button>
-                    ) : (<button>Sign Up</button>)
+                    ) : (<button onClick={handleSignIn}>Sign Up</button>)
                 }
 
                     
