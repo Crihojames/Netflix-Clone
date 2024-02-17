@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TopNav from "../components/TopNav";
 
 
 const Netflix = () => {
@@ -12,6 +13,7 @@ const Netflix = () => {
     console.log(isScrolled);
     return (
         <div className="hero">
+            <TopNav/>
             <img src="public\images\avengers age of ultron team together poster.png"  
             alt="Hero image" />
             <img src="public\images\avengers age of ultron team together poster.png" 
