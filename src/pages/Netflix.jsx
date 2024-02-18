@@ -13,7 +13,7 @@ const Netflix = () => {
     console.log(isScrolled);
     return (
         <div className="hero">
-            <TopNav/>
+            <TopNav isScrolled={isScrolled} />
             <img src="public\images\avengers age of ultron team together poster.png"  
             alt="Hero image" />
             <img src="public\images\avengers age of ultron team together poster.png" 
