@@ -5,6 +5,7 @@ import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 
 import TopNav from "../components/TopNav"
+import Card from "../components/Card"
 
 const Netflix = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -44,6 +45,7 @@ const Netflix = () => {
                 </div>
             </div>
         </div>
+        <Card/>
     </HeroContainer>
   )
 }
