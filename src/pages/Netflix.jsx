@@ -32,8 +32,8 @@ const Netflix = () => {
   window.onscroll = () => {
     setIsScrolled(window.pageYoffSet === 0 ? false : true)
     return () => (window.onscroll = null)
-  }
-  console.log(movies)
+  };
+  // console.log(movies)
   return (
     <HeroContainer>
       <div className="hero">

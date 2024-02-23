@@ -51,11 +51,11 @@ const NetflixSlice = createSlice({
     name: "Netflix",
     initialState,
     extraReducers : (builder) =>{
-        builder.addCase(fetchMovies.fulfilled, (state,action)=>{
+        builder.addCase(getGenres.fulfilled, (state,action)=>{
             state.genres = action.payload;
             state.generesLoaded = true
         });
-        builder.addCase(getGenres.fulfilled, (state,action)=>{
+        builder.addCase(fetchMovies.fulfilled, (state,action)=>{
             state.movies = action.payload;
         });
         
