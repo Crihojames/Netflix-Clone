@@ -43,19 +43,23 @@ const getMovieData = async (api, genres, paging = false)=>{
 
 export const fetchMovies = createAsyncThunk("netflix/trending", async ({type}, myThunk)=>{
     const {netflix: {genres},} = myThunk.getState()
-    const data = getMovieData(`${TMDB_BASE_URL}/trending/${type}/week?api_key=${MY_API_KEY}`, genres, true);
-    console.log(data);
+    return getMovieData(`${TMDB_BASE_URL}/trending/${type}/week?api_key=${MY_API_KEY}`, genres, true);
+    // console.log(data);
 })
 
 const NetflixSlice = createSlice({
     name: "Netflix",
     initialState,
     extraReducers : (builder) =>{
-        builder.addCase(getGenres.fulfilled, (state,action)=>{
+        builder.addCase(fetchMovies.fulfilled, (state,action)=>{
             state.genres = action.payload;
             state.generesLoaded = true
-        })
-    }
+        });
+        builder.addCase(getGenres.fulfilled, (state,action)=>{
+            state.movies = action.payload;
+        });
+        
+    },
 })
 
 export const store = configureStore ({
