@@ -7,7 +7,7 @@ import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri"
 import {BiChevronDown} from "react-icons/bi"
 import { BsCheck } from "react-icons/bs"
 
-const Card = () => {
+const Card = ({movieData}) => {
   const [onHovered, setOnHovered] = useState(false)
   const navigate = useNavigate()
   return (
@@ -16,7 +16,7 @@ const Card = () => {
       onMouseLeave={() => setOnHovered(false)}
     >
       <img
-        src="public\images\netCard.jpg"
+        src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
         alt="movie poster"
         onClick={() => navigate("/player")}
       />
@@ -24,7 +24,7 @@ const Card = () => {
         <div className="hover">
           <div className="image-video-wrapper">
             <img
-              src="public\images\netCard.jpg"
+              src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
               alt="movie poster"
               onClick={() => navigate("/player")}
             />
@@ -41,7 +41,7 @@ const Card = () => {
               className="movieName"
               onClick={() => navigate("/player")}
             >
-              Red Notice
+              {movieData.name}
             </h3>
             <div className="icons">
                 <div className="controls">
@@ -57,10 +57,9 @@ const Card = () => {
             </div>
             <div className="genre">
               <ul>
-                <li>Action</li>
-                <li>Action</li>
-                <li>Action</li>
-                <li>Action</li>
+                {movieData.genres.map((genre)=>{
+                  <li>{genre}</li>
+                })}
               </ul>
             </div>
           </div>
