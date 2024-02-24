@@ -1,4 +1,5 @@
 import { useState } from "react"
+import React from "react"
 import { useNavigate } from "react-router-dom"
 import styled from "styled-components"
 import { IoPlayCircleSharp } from "react-icons/io5"
@@ -7,7 +8,8 @@ import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri"
 import {BiChevronDown} from "react-icons/bi"
 import { BsCheck } from "react-icons/bs"
 
-const Card = ({movieData}) => {
+  // eslint-disable-next-line react-refresh/only-export-components
+  export default React.memo(function Card  ({movieData})  {
   const [onHovered, setOnHovered] = useState(false)
   const navigate = useNavigate()
   return (
@@ -67,7 +69,7 @@ const Card = ({movieData}) => {
       )}
     </CardContainer>
   )
-}
+});
 
 const CardContainer = styled.div`
 margin-top: 1rem;
@@ -151,7 +153,6 @@ margin-top: 1rem;
         display: flex;
         gap: 1rem;
         li{
-
           padding-right: 0.7rem;
           &:first-of-type:{
             list-style-type: none;
@@ -160,6 +161,4 @@ margin-top: 1rem;
       }
     }
   }
-`
-
-export default Card
+`;

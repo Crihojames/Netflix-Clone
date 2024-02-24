@@ -1,7 +1,9 @@
+import React from "react";
 import Card from "./Card"
 import styled from "styled-components";
 
-const MovieSlider = ({data, title}) => {
+// eslint-disable-next-line react-refresh/only-export-components
+export default React.memo(function MovieSlider({data, title}) {
     return (
         <Container>
             <h1>{title}</h1>
@@ -10,15 +12,14 @@ const MovieSlider = ({data, title}) => {
                     {
                         data.map((movie, index)=>{
                             return <Card movieData={movie} index={index} key={movie.id}/>
-                        })
-                    }
+                        })}
                 </div>
             </div>
             
         </Container>
         
     );
-};
+});
 
 const  Container = styled.div`
 gap: 0.7rem;
@@ -39,7 +40,4 @@ h1{
         transition: 1s ease-in-out;
         margin-left: 5px;
     }
-}
-`
-
-export default MovieSlider;
+}`;
