@@ -76,7 +76,6 @@ margin-top: 1rem;
   height: 100%;
   cursor: pointer;
   position: relative;
-  background-color: red;
   img {
     border-radius: 0.2rem;
     width: 100%;
